@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class plrMovement : MonoBehaviour
+[RequireComponent(typeof(CharacterController))]
+public sealed class plrMovement : MonoBehaviour
 {
+    [Header("Movement settings")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight;
 
+    [Header("Ground detection settings")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.2f;
     [SerializeField] private LayerMask groundMask;
@@ -17,13 +18,13 @@ public class plrMovement : MonoBehaviour
     private Vector3 velocity;
 
     private bool isGrounded;
-    void Start()
+    
+    private void Start()
     {
         _charController = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
