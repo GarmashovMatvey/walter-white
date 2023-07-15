@@ -1,49 +1,41 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody))]
 public sealed class plrMovement : MonoBehaviour
 {
     [Header("Movement settings")]
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private Transform orientation;
 
     [Header("Ground detection settings")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.2f;
     [SerializeField] private LayerMask groundMask;
     
-    private CharacterController _charController;
-    
-    private Vector3 velocity;
-
+    private Rigidbody _rb;
+    private Vector3 moveDir;
     private bool isGrounded;
-    
+
     private void Start()
     {
-        _charController = GetComponent<CharacterController>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
-        _charController.Move(move * moveSpeed * Time.deltaTime);
+        moveDir = orientation.forward * z * moveSpeed + orientation.right * x * moveSpeed + orientation.up * _rb.velocity.y;
+
+        _rb.velocity = moveDir;
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            _rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
-        velocity.y += gravity * Time.deltaTime;
-        _charController.Move(velocity * Time.deltaTime);
     }
 }
