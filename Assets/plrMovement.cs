@@ -26,8 +26,8 @@ public sealed class plrMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxisRaw("Vertical");
 
         moveDir = orientation.forward * z * moveSpeed + orientation.right * x * moveSpeed + orientation.up * _rb.velocity.y;
 

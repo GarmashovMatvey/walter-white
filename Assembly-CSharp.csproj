@@ -41,10 +41,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\funny cube\cubeMove.cs" />
-     <Compile Include="Assets\MouseLook.cs" />
      <Compile Include="Assets\plrMovement.cs" />
      <Compile Include="Assets\script.cs" />
+     <Compile Include="Assets\Item.cs" />
+     <Compile Include="Assets\MouseLook.cs" />
+     <Compile Include="Assets\funny cube\cubeMove.cs" />
+     <Compile Include="Assets\TakeItems.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\funny cube" />
      <Folder Include="Assets\Scenes" />
