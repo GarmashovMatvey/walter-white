@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scenes;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class health : MonoBehaviour
+public class health : MonoBehaviour, IHealth
 {
-    public float hp = 5;
-    public Collider _Collider;
+    public static float maxHealth { get; } = 3;
+    public float curHealth { get; set; } = maxHealth;
+    
+    Collider _Collider;
     
 
     void Start()
@@ -16,9 +20,16 @@ public class health : MonoBehaviour
     
     void Update()
     {
-        if (hp <= 0)
+        
+    }
+
+    public void TakeDamage(int damage)
+    {
+        curHealth -= damage;
+        if (curHealth <= 0)
         {
             Destroy(gameObject);
         }
     }
+    
 }

@@ -42,12 +42,13 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\plrMovement.cs" />
+     <Compile Include="Assets\gumba.cs" />
+     <Compile Include="Assets\health.cs" />
+     <Compile Include="Assets\IHealth.cs" />
      <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\MouseLook.cs" />
      <Compile Include="Assets\funny cube\cubeMove.cs" />
      <Compile Include="Assets\TakeItems.cs" />
-     <Compile Include="Assets\health.cs" />
-     <Compile Include="Assets\gumba.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\funny cube" />
      <Folder Include="Assets\Scenes" />

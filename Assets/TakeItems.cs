@@ -28,7 +28,7 @@ public class TakeItems : MonoBehaviour
         {
             Physics.Raycast(_cam.transform.position, _camDir, out RaycastHit hit, Mathf.Infinity, whatToHit);
 
-            hit.collider.gameObject.GetComponent<health>().hp -= 1;
+            hit.collider.gameObject.GetComponent<health>().TakeDamage(1);
             Debug.Log(hit.collider.gameObject.name + "was hit!");
         }
     }
